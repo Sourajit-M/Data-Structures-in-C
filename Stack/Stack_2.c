@@ -22,8 +22,6 @@ int main(){
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
-        
-
         switch (choice){
             case 1:
             //push function
@@ -50,20 +48,17 @@ int main(){
 }
 
 void push(int stack[]){
+    if(top == MAX_SIZE-1){
+        printf("Stack is Overflow!! \n");
+        return;
+    }
+
     int elem;
     printf("Enter a element to be inserted into the stack: ");
     scanf("%d", &elem);
-    if(top == -1){
-        top = 0;
-        stack[top] = elem;
-        printf("%d is pushed into Stack\n", elem);
-    }else if(top < MAX_SIZE-1){
-        top++;
-        stack[top] = elem;
-        printf("%d is pushed into Stack\n", elem);
-    }else{
-        printf("Stack is Overflow!! \n");
-    }
+    top++;
+    stack[top] = elem;
+    printf("%d is pushed into Stack\n", elem);
 }
 
 void pop(int stack[]){
