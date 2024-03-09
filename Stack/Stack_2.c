@@ -7,7 +7,7 @@
 int stack[MAX_SIZE];
 int top = -1;
 
-void push(int stack[], int elem);
+void push(int stack[]);
 void pop(int stack[]);
 void display(int stack[]);
 
@@ -22,14 +22,12 @@ int main(){
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
-        int elem;
+        
 
         switch (choice){
             case 1:
             //push function
-            printf("Enter a element to be inserted into the stack: ");
-            scanf("%d", &elem);
-            push(stack, elem);
+            push(stack);
             break;
 
             case 2:
@@ -51,7 +49,10 @@ int main(){
     return 0;
 }
 
-void push(int stack[], int elem){
+void push(int stack[]){
+    int elem;
+    printf("Enter a element to be inserted into the stack: ");
+    scanf("%d", &elem);
     if(top == -1){
         top = 0;
         stack[top] = elem;
