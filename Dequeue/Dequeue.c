@@ -61,7 +61,7 @@ void add_front(int Dqueue[]){
     }
 
     int elem;
-    printf("Enter the element to be inserted into the Dqueue: ");
+    printf("Enter the element to be inserted from front into the Dqueue: ");
     scanf("%d", &elem);
     
     if(front==-1){
@@ -85,7 +85,7 @@ void add_rear(int Dqueue[]){
     }
 
     int elem;
-    printf("Enter the element to be inserted into the Dqueue: ");
+    printf("Enter the element to be inserted from rear into the Dqueue: ");
     scanf("%d", &elem);
 
     if(front == -1){
