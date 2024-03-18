@@ -144,7 +144,7 @@ void display(int Dqueue[]){
     }
 
     int i= front;
-    printf("Dequeu Elements are: \n");
+    printf("Dequeue Elements are: \n");
     while(i!=rear){
         printf("%d ", Dqueue[i]);
         i = (i+1) % MAX_SIZE;
