@@ -1,0 +1,45 @@
+Algorithm for add front function:
+1. Check if front==0 and rear ==MAX_SIZE -1
+    then print "Queue is full!"
+2. Read an item
+3. Check if front = -1
+    set front=0 and rear = 0
+4. else if front = 0
+    set front  = MAX_SIZE -1
+5. else set front = front -1
+6. arr[front] = item
+
+
+Algorithm for add rear function:
+1. Check if front==0 and rear ==MAX_SIZE -1
+    then print "Queue is full!"
+2. Read an item
+3. Check if front = -1
+    set front=0 and rear = 0
+4. else if rear = MAX_SIZE -1
+    set rear  = 0
+5. else set rear = rear + 1
+6. arr[rear] = item
+
+Algorithm for remove front function:
+1. Check if front==-1
+    then print "Queue is empty"
+
+2. else print element at arr[front]
+3. Check if front==rear
+    then set front=-1 and rear=-1
+4. else if front == MAX_SIZE-1
+    then set front=0
+5. else set front = (front+1)%N
+
+
+Algorithm for remove rear function:
+1. Check if front==-1
+    then print "Queue is empty"
+
+2. else print element at arr[rear]
+3. Check if front==rear
+    then set front=-1 and rear=-1
+4. else if rear=0
+    then set rear = MAX_SIZE-1
+5. else set rear = (rear-1)%N

@@ -114,7 +114,10 @@ void remove_front(int Dqueue[]){
     if(front == rear){
         front = -1;
         rear = -1;
-    }else{
+    }else if(front==MAX_SIZE-1){
+        front=0;
+    }
+    else{
         front = (front+1) % MAX_SIZE;
     }
 }
