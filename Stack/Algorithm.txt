@@ -1,0 +1,16 @@
+Algorithm for push function:
+
+1. Check if top == MAX_SIZE - 1
+    then print "Stack is Overflow!"
+2. Else read an item
+3. Set top = top + 1
+4. arr[top] = item
+
+
+
+Algorithm for pop function:
+1. Check if top >= 0 
+2. pop the element arr[top]
+3. Set top = top -1
+4. Else print "Stack is underflow!"
+

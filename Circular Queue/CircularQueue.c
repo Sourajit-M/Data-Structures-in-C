@@ -44,7 +44,7 @@ void display(){
     printf("\n");
 }
 int main(){
-     int flag = 1;
+    int flag = 1;
     while(flag){
         int choice;
         printf("Enter 1 for enqueue function\n");
