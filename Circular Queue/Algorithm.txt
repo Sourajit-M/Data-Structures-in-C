@@ -1,0 +1,18 @@
+Algorithm for enqueue function:
+1. Check if (rear+1)%N = front
+    then print "Queue is full!"
+2. read an item
+3. else if front==-1 and rear ==-1
+    then set front=0 and rear = 0
+    arr[rear] = item
+4. set rear = (rear+1)%N
+5. arr[rear] = item
+
+
+Algorithm for dequeue function:
+1. Check if front == -1
+    then print "Queue is empty!"
+2. Check if front==rear
+    then print elem at arr[front]
+3. set front=-1 and rear = -1
+4. Else set front = (front+1)%N
