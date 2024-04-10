@@ -33,15 +33,5 @@ int main(){
         printf("%d exists at index %d", target, idx);
     }
 
-
-    printf("\n");
-
-    int idx1 = binarySearch(arr, n, target);
-    if(idx1 == -1){
-        printf("Element does not exist");
-    }else{
-        printf("%d exists at index %i", target, idx1);
-    }
-
     return 0;
 }

@@ -41,7 +41,7 @@ int main(){
     if(idx == -1){
         printf("Element does not exist");
     }else{
-        printf("%d exists at index %i", target, idx);
+        printf("%d exists at index %d", target, idx);
     }
 
     return 0;
