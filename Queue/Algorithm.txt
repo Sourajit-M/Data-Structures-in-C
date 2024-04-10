@@ -3,11 +3,11 @@ Algorithm for add function:
 1.Check if rear == MAX_SIZE - 1
     then print "Queue is full!"
 
-2. Check if front == -1 && rear == -1
+2. Read an item 
+3. Check if front == -1 && rear == -1
     set front=0 and rear = 0
-3. Read an item 
-4. Set rear  = rear +1
-5. ar[rear] = elem
+4. Else Set rear  = rear +1
+5. arr[rear] = elem
 
 
 Algorithm for remove function:
