@@ -3,18 +3,19 @@
 
 typedef struct Node {
     int data;
-    struct Node *next;
+    struct Node *ptr;
 } Node;
 
 Node *createNode(int data) {
     Node *newNode = (Node *)malloc(sizeof(Node));
+    // int eshita = (int *)malloc(sizeof(2*int))
     if (newNode == NULL) {
         printf("Memory Allocation failed! \n");
         exit(1);
     }
 
     newNode->data = data;
-    newNode->next = NULL;
+    newNode->ptr = NULL;
     return newNode;
 }
 
@@ -24,10 +25,10 @@ void add_element(Node **head, int data) {
         *head = newNode;
     } else {
         Node *temp = *head;
-        while (temp->next != NULL) {
-            temp = temp->next;
+        while (temp->ptr != NULL) {
+            temp = temp->ptr;
         }
-        temp->next = newNode;
+        temp->ptr = newNode;
     }
 }
 
@@ -37,7 +38,7 @@ void remove_element(Node **head, int data) {
 
     while (current != NULL && current->data != data) {
         prev = current;
-        current = current->next;
+        current = current->ptr;
     }
 
     if (current == NULL) {
@@ -46,9 +47,9 @@ void remove_element(Node **head, int data) {
     }
 
     if (prev == NULL) {
-        *head = current->next;
+        *head = current->ptr;
     } else {
-        prev->next = current->next;
+        prev->ptr = current->ptr;
     }
 
     free(current);
@@ -57,9 +58,24 @@ void remove_element(Node **head, int data) {
 void display(Node *head) {
     while (head != NULL) {
         printf("%d ", head->data);
-        head = head->next;
+        head = head->ptr;
     }
     printf("\n");
+}
+
+
+// 1 2 3 4 5 ----> 5 4 3 2 1
+
+void reverseList(Node **head){
+    Node *prev = NULL;
+
+    while(head != NULL){
+        Node *next = prev;
+        prev =  head;
+        head = next;
+    }
+
+    return prev;
 }
 
 int main() {
@@ -75,3 +91,4 @@ int main() {
 
     return 0;
 }
+
