@@ -3,42 +3,101 @@
 
 typedef struct Node {
     int data;
-    struct Node *ptr;
+    struct Node *next;
 } Node;
 
-Node *createNode(int data) {
+void insertAtBegin(Node **head, int val) {
     Node *newNode = (Node *)malloc(sizeof(Node));
-    // int eshita = (int *)malloc(sizeof(2*int))
     if (newNode == NULL) {
-        printf("Memory Allocation failed! \n");
+        printf("Memory allocation failed\n");
         exit(1);
     }
-
-    newNode->data = data;
-    newNode->ptr = NULL;
-    return newNode;
+    newNode->data = val;
+    newNode->next = *head;
+    *head = newNode;
 }
 
-void add_element(Node **head, int data) {
-    Node *newNode = createNode(data);
+void insertAtEnd(Node **head, int val) {
+    Node *newNode = (Node *)malloc(sizeof(Node));
+    if (newNode == NULL) {
+        printf("Memory allocation failed\n");
+        exit(1);
+    }
+    newNode->data = val;
+    newNode->next = NULL;
+
     if (*head == NULL) {
         *head = newNode;
     } else {
         Node *temp = *head;
-        while (temp->ptr != NULL) {
-            temp = temp->ptr;
+        while (temp->next != NULL) {
+            temp = temp->next;
         }
-        temp->ptr = newNode;
+        temp->next = newNode;
     }
 }
 
-void remove_element(Node **head, int data) {
+void deleteFromFront(Node **head) {
+    if (*head == NULL) {
+        printf("List is empty\n");
+        return;
+    }
+
+    Node *temp = *head;
+    printf("%d is removed\n", temp->data);
+    *head = (*head)->next;
+    free(temp);
+}
+
+void deleteFromEnd(Node **head) {
+    if (*head == NULL) {
+        printf("List is empty\n");
+        return;
+    }
+
+    if ((*head)->next == NULL) {
+        printf("%d is removed\n", (*head)->data);
+        free(*head);
+        *head = NULL;
+        return;
+    }
+
+    Node *temp = *head;
+    Node *prev = NULL;
+    while (temp->next != NULL) {
+        prev = temp;
+        temp = temp->next;
+    }
+
+    prev->next = NULL;
+    printf("%d is removed\n", temp->data);
+    free(temp);
+}
+
+void display(Node *head) {
+    if (head == NULL) {
+        printf("List is empty\n");
+        return;
+    }
+    while (head != NULL) {
+        printf("%d ", head->data);
+        head = head->next;
+    }
+    printf("\n");
+}
+
+void deleteElementRandom(Node **head, int data) {
+    if (*head == NULL) {
+        printf("List is empty\n");
+        return;
+    }
+
     Node *current = *head;
     Node *prev = NULL;
 
     while (current != NULL && current->data != data) {
         prev = current;
-        current = current->ptr;
+        current = current->next;
     }
 
     if (current == NULL) {
@@ -47,48 +106,41 @@ void remove_element(Node **head, int data) {
     }
 
     if (prev == NULL) {
-        *head = current->ptr;
+        *head = current->next;
     } else {
-        prev->ptr = current->ptr;
+        prev->next = current->next;
     }
 
+    printf("%d is removed from the list\n", data);
     free(current);
 }
 
-void display(Node *head) {
-    while (head != NULL) {
-        printf("%d ", head->data);
-        head = head->ptr;
-    }
-    printf("\n");
-}
-
-
-// 1 2 3 4 5 ----> 5 4 3 2 1
-
-void reverseList(Node **head){
+Node* reverseList(Node *head) {
     Node *prev = NULL;
-
-    while(head != NULL){
-        Node *next = prev;
-        prev =  head;
+    while (head != NULL) {
+        Node *next = head->next;
+        head->next = prev;
+        prev = head;
         head = next;
     }
-
     return prev;
 }
 
 int main() {
     Node *head = NULL;
 
-    add_element(&head, 10);
-    add_element(&head, 20);
-    add_element(&head, 30);
+    insertAtBegin(&head, 10);
+    insertAtEnd(&head, 20);
+    display(head);
+    deleteFromFront(&head);
+    insertAtEnd(&head, 30);
+    insertAtBegin(&head, 10);
+    display(head);
+    deleteElementRandom(&head, 20);
     display(head);
 
-    remove_element(&head, 20);
+    head = reverseList(head);
     display(head);
 
     return 0;
 }
-
