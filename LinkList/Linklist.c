@@ -37,6 +37,39 @@ void insertAtEnd(Node **head, int val) {
     }
 }
 
+void insertAtRandom(Node **head, int val, int index) {
+    if (index < 1) {
+        printf("Invalid index\n");
+        return;
+    }
+
+    Node *newNode = (Node *)malloc(sizeof(Node));
+    if (newNode == NULL) {
+        printf("Memory allocation failed\n");
+        exit(1);
+    }
+    newNode->data = val;
+
+    if (index == 1) {
+        newNode->next = *head;
+        *head = newNode;
+        return;
+    }
+
+    Node *temp = *head;
+    for (int i = 1; i < index - 1 && temp != NULL; i++) {
+        temp = temp->next;
+    }
+    if (temp == NULL) {
+        printf("Invalid index\n");
+        free(newNode);
+        return;
+    }
+
+    newNode->next = temp->next;
+    temp->next = newNode;
+}
+
 void deleteFromFront(Node **head) {
     if (*head == NULL) {
         printf("List is empty\n");
@@ -126,21 +159,78 @@ Node* reverseList(Node *head) {
     return prev;
 }
 
+void getUserInput(int *ptr, const char *message) {
+    printf("%s", message);
+    scanf("%d", ptr);
+}
+
 int main() {
     Node *head = NULL;
 
-    insertAtBegin(&head, 10);
-    insertAtEnd(&head, 20);
-    display(head);
-    deleteFromFront(&head);
-    insertAtEnd(&head, 30);
-    insertAtBegin(&head, 10);
-    display(head);
-    deleteElementRandom(&head, 20);
-    display(head);
+    int flag = 1;
 
-    head = reverseList(head);
-    display(head);
+    while (flag) {
+        int choice;
+        printf("Enter 1 to insert at the beginning\n");
+        printf("Enter 2 to insert at the end\n");
+        printf("Enter 3 to insert at a random position\n");
+        printf("Enter 4 to delete from the beginning\n");
+        printf("Enter 5 to delete from the end\n");
+        printf("Enter 6 to delete a specific element\n");
+        printf("Enter 7 to display the list\n");
+        printf("Enter 8 to reverse the list\n");
+        printf("Enter 9 to exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        int val;
+        int index;
+
+        switch (choice) {
+            case 1:
+                getUserInput(&val, "Enter the element to be inserted at the beginning: ");
+                insertAtBegin(&head, val);
+                break;
+            case 2:
+                getUserInput(&val, "Enter the element to be inserted at the end: ");
+                insertAtEnd(&head, val);
+                break;
+            case 3:
+                getUserInput(&val, "Enter the element to be inserted: ");
+                getUserInput(&index, "Enter the index to insert the element: ");
+                insertAtRandom(&head, val, index);
+                break;
+            case 4:
+                deleteFromFront(&head);
+                break;
+            case 5:
+                deleteFromEnd(&head);
+                break;
+            case 6:
+                getUserInput(&val, "Enter the element to be deleted: ");
+                deleteElementRandom(&head, val);
+                break;
+            case 7:
+                display(head);
+                break;
+            case 8:
+                head = reverseList(head);
+                break;
+            case 9:
+                flag = 0;
+                break;
+            default:
+                printf("Invalid choice\n");
+                break;
+        }
+    }
+
+     Node *temp;
+    while (head != NULL) {
+        temp = head;
+        head = head->next;
+        free(temp);
+    }
 
     return 0;
 }
