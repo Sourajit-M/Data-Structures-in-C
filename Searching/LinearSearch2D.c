@@ -1,38 +1,38 @@
 #include <stdio.h>
 
-void linearSearch(int arr[][10], int n, int target){
-    for(int i=0; i<n; i++){
-        for(int j=0; j<n; j++){
-            if(arr[i][j] == target){
-                printf("%d exists at index %d %d", target, i, j);
-                return;
+int N;
+
+int linearSearch2D(int arr[][N], int rows, int cols, int target) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (arr[i][j] == target) {
+                printf("Element found at position (%d, %d)\n", i, j);
+                return 1;
             }
-            
         }
     }
-
-    printf("%d does not exist", target);
+    printf("Element not found in the array.\n");
+    return 0;
 }
 
-int main(){
-    int n;
+int main() {
     printf("Enter the size of the array: ");
-    scanf("%d", &n);
+    scanf("%d", &N);
 
-    int arr[n][10];
+    int array[N][N];
 
-    printf("Enter the elements of the array: ");
-    for(int i=0; i<n; i++){
-        for(int j=0; j<n; j++){
-            scanf("%d", &arr[i][j]);
+    printf("Enter the elements of the array:\n");
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            scanf("%d", &array[i][j]);
         }
     }
 
     int target;
-    printf("Enter the element to be searched: ");
+    printf("Enter the target element to search for: ");
     scanf("%d", &target);
 
-    linearSearch(arr, n, target);
+    linearSearch2D(array, N, N, target);
 
     return 0;
 }

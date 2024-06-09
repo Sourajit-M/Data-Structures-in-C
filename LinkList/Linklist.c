@@ -167,70 +167,54 @@ void getUserInput(int *ptr, const char *message) {
 int main() {
     Node *head = NULL;
 
-    int flag = 1;
+    // Example input for inserting at the beginning
+    insertAtBegin(&head, 10);
+    insertAtBegin(&head, 20);
+    insertAtBegin(&head, 30);
 
-    while (flag) {
-        int choice;
-        printf("Enter 1 to insert at the beginning\n");
-        printf("Enter 2 to insert at the end\n");
-        printf("Enter 3 to insert at a random position\n");
-        printf("Enter 4 to delete from the beginning\n");
-        printf("Enter 5 to delete from the end\n");
-        printf("Enter 6 to delete a specific element\n");
-        printf("Enter 7 to display the list\n");
-        printf("Enter 8 to reverse the list\n");
-        printf("Enter 9 to exit\n");
-        printf("Enter your choice: ");
-        scanf("%d", &choice);
+    // Display the list
+    printf("List after inserting at the beginning: ");
+    display(head);
 
-        int val;
-        int index;
+    // Example input for inserting at the end
+    insertAtEnd(&head, 40);
+    insertAtEnd(&head, 50);
 
-        switch (choice) {
-            case 1:
-                getUserInput(&val, "Enter the element to be inserted at the beginning: ");
-                insertAtBegin(&head, val);
-                break;
-            case 2:
-                getUserInput(&val, "Enter the element to be inserted at the end: ");
-                insertAtEnd(&head, val);
-                break;
-            case 3:
-                getUserInput(&val, "Enter the element to be inserted: ");
-                getUserInput(&index, "Enter the index to insert the element: ");
-                insertAtRandom(&head, val, index);
-                break;
-            case 4:
-                deleteFromFront(&head);
-                break;
-            case 5:
-                deleteFromEnd(&head);
-                break;
-            case 6:
-                getUserInput(&val, "Enter the element to be deleted: ");
-                deleteElementRandom(&head, val);
-                break;
-            case 7:
-                display(head);
-                break;
-            case 8:
-                head = reverseList(head);
-                break;
-            case 9:
-                flag = 0;
-                break;
-            default:
-                printf("Invalid choice\n");
-                break;
-        }
-    }
+    // Display the list
+    printf("List after inserting at the end: ");
+    display(head);
 
-     Node *temp;
-    while (head != NULL) {
-        temp = head;
-        head = head->next;
-        free(temp);
-    }
+    // Example input for inserting at a random position
+    insertAtRandom(&head, 25, 2); // Insert 25 at position 2
+    insertAtRandom(&head, 35, 5); // Insert 35 at position 5
+
+    // Display the list
+    printf("List after inserting at random positions: ");
+    display(head);
+
+    // Example input for deleting from the front
+    deleteFromFront(&head);
+
+    // Display the list
+    printf("List after deleting from the front: ");
+    display(head);
+
+    // Example input for deleting from the end
+    deleteFromEnd(&head);
+
+    // Display the list
+    printf("List after deleting from the end: ");
+    display(head);
+
+    // Example input for deleting a specific element
+    deleteElementRandom(&head, 25); // Delete element with value 25
+    deleteElementRandom(&head, 100); // Attempt to delete element with value 100 (not in list)
+
+    // Display the list
+    printf("List after deleting specific elements: ");
+    display(head);
+
 
     return 0;
 }
+

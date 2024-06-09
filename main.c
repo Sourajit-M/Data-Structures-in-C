@@ -1,10 +1,22 @@
 #include <stdio.h>
+#include <string.h>
 
-int main(){
-    char str[] = "Eshita Biswas";
+int main() {
+    char sentence[200];
+    printf("Enter the sentence: ");
+    fgets(sentence, 200, stdin);
 
-    for(int i=12; i>=0; i--){
-        printf("%c", str[i]);
+    int count = 0, i = 0;
+    for (i = 0; sentence[i] != '\0'; i++) {
+        if (sentence[i] == ' ' && sentence[i+1] != ' ') {
+            count++;
+        }
     }
+
+    if (i > 0 && sentence[i-1] != ' ') {
+        count++;
+    }
+
+    printf("The number of words present in the sentence is %d", count);
     return 0;
 }
